@@ -65,7 +65,7 @@ String.prototype.filterWords = async function(notAllowedWords){
     };
 
     try{
-        let result = doFilter();
+        let result = await doFilter();
 
         return result;
     }catch(error){
