@@ -12,3 +12,8 @@ const dns = require('dns');
 dns.resolve4('mum.edu',function(err, addresses){
     console.log(addresses);
 });
+
+
+// Way 2:
+
+
