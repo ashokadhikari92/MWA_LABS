@@ -78,3 +78,17 @@ String.prototype.filterWords = async function(notAllowedWords){
 
 // Way 4: Using Observables
 
+const rx = require('rxjs');
+const rxOps = require('rxjs/operators');
+
+
+String.prototype.filterWords = function (notAllowedWords) {
+    rx.from(this.split(" "))
+        .pipe(
+            rxOps.map((word) => { if (notAllowedWords.includes(word)) { return "***" } else { return word } }), 
+            rxOps.reduce((word1, word2) => word1 + " " + word2)
+        )
+        .subscribe((updatedSentence) => { console.log(updatedSentenceb) }, (error) => console.log(error), null)
+}
+
+"This house is nice !!".filterWords(["house","nice"]);
