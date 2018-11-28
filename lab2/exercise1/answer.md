@@ -27,8 +27,4 @@ Explain the difference between process.nextTick and setImmediate ?
      - url - TO parse URL strings
      - util - To access utility functions
      - timers - To execute a function after a given number of milliseconds
-     - zlib - To compress or decompress files
-
-
-
-
+     
