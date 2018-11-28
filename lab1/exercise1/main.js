@@ -88,7 +88,7 @@ String.prototype.filterWords = function (notAllowedWords) {
             rxOps.map((word) => { if (notAllowedWords.indexOf(word) > -1) { return "***" } else { return word } }), 
             rxOps.reduce((word1, word2) => word1 + " " + word2)
         )
-        .subscribe((updatedSentence) => { console.log(updatedSentenceb) }, (error) => console.log(error), null)
+        .subscribe((updatedSentence) => { console.log(updatedSentence) }, (error) => console.log(error), null)
 }
 
 "This house is nice !!".filterWords(["house","nice"]);
