@@ -3,7 +3,7 @@
 String.prototype.filterWords = function(notAllowedWords){
     let wordsInString = this.split(' ');
     let updatedWords = wordsInString.map(word => {
-        if(notAllowedWords.includes(word)){
+        if(notAllowedWords.indexOf(word) > -1){
             return "***";
         }
         return word;
@@ -23,7 +23,7 @@ String.prototype.filterWords = function(notAllowedWords){
         if(Array.isArray(notAllowedWords)){
             let wordsInString = that.split(' ');
             let updatedWords = wordsInString.map(word => {
-                if(notAllowedWords.includes(word)){
+                if(notAllowedWords.indexOf(word) > -1){
                     return "***";
                 }
                 return word;
@@ -50,7 +50,7 @@ String.prototype.filterWords = async function(notAllowedWords){
             if(Array.isArray(notAllowedWords)){
                 let wordsInString = that.split(' ');
                 let updatedWords = wordsInString.map(word => {
-                    if(notAllowedWords.includes(word)){
+                    if(notAllowedWords.indexOf(word) > -1){
                         return "***";
                     }
                     return word;
@@ -85,7 +85,7 @@ const rxOps = require('rxjs/operators');
 String.prototype.filterWords = function (notAllowedWords) {
     rx.from(this.split(" "))
         .pipe(
-            rxOps.map((word) => { if (notAllowedWords.includes(word)) { return "***" } else { return word } }), 
+            rxOps.map((word) => { if (notAllowedWords.indexOf(word) > -1) { return "***" } else { return word } }), 
             rxOps.reduce((word1, word2) => word1 + " " + word2)
         )
         .subscribe((updatedSentence) => { console.log(updatedSentenceb) }, (error) => console.log(error), null)
