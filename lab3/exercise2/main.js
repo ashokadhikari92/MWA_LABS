@@ -6,14 +6,56 @@
  *     requests at the same time to observe performance differences, write down your observations
  */
 
+ // Way 1: Using Synchronous File read
  const http = require('http');
  const server = http.createServer();
  const fs = require('fs');
+ const path = require('path');
 
  server.on('request', function(req,res){
-     res.writeHead(200, {'Content-Type':'text/plain'});
-     res.write("Hello World");
-     res.end();
+    let responseFile = fs.readFileSync(path.join(__dirname,'responseFile.txt'),'utf8');
+    res.writeHead(200, {'Content-Type':'text/plain'});
+    res.write(responseFile);
+    res.end();
  });
 
  server.listen(4000);
+
+ // Observation: consumed a lot of app memory, if I opended in multiple browser tab, it does not get any response
+
+
+ // Way 2: Using Asynchronous file read
+ const http = require('http');
+ const server = http.createServer();
+ const fs = require('fs');
+ const path = require('path');
+
+ server.on('request', function(req,res){
+    res.writeHead(200, {'Content-Type':'text/plain'});    
+    let responseFile = fs.readFile(path.join(__dirname,'responseFile.txt'),'utf8',function(error,fileData){
+        res.write(fileData);
+        res.end();
+    });
+ });
+
+ server.listen(4000);
+
+ // Observation: consumed a lot of app memory, if I opended in multiple browser tab, each request started to get some response.
+
+
+ // Way 2: Using Asynchronous file read
+ const http = require('http');
+ const server = http.createServer();
+ const fs = require('fs');
+ const path = require('path');
+ 
+
+ server.on('request', function(req,res){
+    res.writeHead(200, {'Content-Type':'text/plain'});  
+    const readStream = fs.createReadStream(path.join(__dirname,'responseFile.txt'));
+    readStream.pipe(res);  
+ });
+
+ server.listen(4000);
+
+ // Observation: 
