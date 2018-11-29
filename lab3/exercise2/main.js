@@ -6,6 +6,8 @@
  *     requests at the same time to observe performance differences, write down your observations
  */
 
+ // Note: To run this program, first create a file  named as "responseFile.txt" (I created file with more than 250 MB in size) inside exercise2 folder
+
  // Way 1: Using Synchronous File read
  const http = require('http');
  const server = http.createServer();
@@ -58,4 +60,4 @@
 
  server.listen(4000);
 
- // Observation: 
+ // Observation: Did not consumed large amount of memory, and if I opened multiple tabs, each request started to get response.
