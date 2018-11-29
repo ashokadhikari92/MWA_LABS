@@ -16,4 +16,29 @@ dns.resolve4('mum.edu',function(err, addresses){
 
 // Way 2:
 
+const { promisify } = require('util');
+const dns = require('dns');
+const dnsResolve4Async = promisify(dns.resolve4);
 
+dnsResolve4Async('mum.edu')
+ .then((data)=> { console.log(data) })
+ .catch((error) => { console.log(error) });
+
+
+ // Way 3: 
+
+ const { promisify } = require('util');
+ const dns = require('dns');
+ const dnsResolve4Async = promisify(dns.resolve4);
+
+ async function giveMeIpv4(){
+     try{
+         const resolvedAddress = await dnsResolve4Async('mum.edu');
+         console.log(resolvedAddress);
+
+     }catch(error){
+         console.log(error)
+     }
+ }
+
+giveMeIpv4();
