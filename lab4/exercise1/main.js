@@ -5,30 +5,33 @@
  */
 
  const http = require('http');
- const fs = require('fs');
  const { fork } = require('child_process');
  const url = require('url');
  const { Subject } = require("rxjs");
+ const subject = new Subject();
 
-//  const subject = new Subject();
+ function readRequestedFile(reqres){
+    const myUrl = url.parse(reqres.req.url,true);
+    const filePath = myUrl.query.url;
+    // const filePath = 'response.txt';
+
+    if(filePath){
+        const childProcess = fork("lab4/exercise1/child.js");
+        childProcess.send(filePath);
+        childProcess.on('message', data => {
+            reqres.res.write(data);
+            reqres.res.end();
+        });
+    
+        childProcess.on('error', error => {
+            reqres.res.end(error.message);
+        });
+    }
+ }
+
+ subject.subscribe(readRequestedFile);
 
  http.createServer((req,res)=>{
-    const myUrl = url.parse(req.url,true);
-    const filePath = myUrl.query.url;
-    console.log(filePath);
-
-    try{
-        if(fs.existsSync(filePath)){
-            res.end("Successfully fetched given file."+filePath);
-        }else{
-            res.end("Can not access given file path.");
-        }
-    }catch(error){
-        res.end("Error occurred.");
-    }
-   
-    // console.log(myUrl);
-    // const childProcess = fork('child.js');
-    // subject.next({req,res});
-    
+    subject.next({req: req, res:res});
  }).listen(4000);
+ 
