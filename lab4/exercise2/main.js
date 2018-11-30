@@ -40,7 +40,7 @@
  const os = require('os');
  const { Observable } = require('rxjs');
 
- const observable = Observable.create((observer) =>{
+ const observable$ = Observable.create((observer) =>{
     observer.next("Checking your system...");
     const totalCpus = os.cpus().length;
     const totalMemory = (os.totalmem()/1000000000);
@@ -49,16 +49,18 @@
     }else if(totalCpus < 2){
        observer.next("Processor is not supported.");
     }else{
-        observer.next("System is checked successfully.");
+        observer.complete();
     }
 
 
  });
 
- observable.subscribe(
-    (data) => {console.log(data)},
-    (error) => console.log(error),
-    null
- )
+ function checkSystem(){
+    observable$.subscribe(
+        (data) => {console.log(data)},
+        (error) => console.log(error),
+        () => console.log("System is checked successfully.")
+    )
+}
  
-
+checkSystem();
