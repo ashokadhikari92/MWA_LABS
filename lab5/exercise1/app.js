@@ -13,6 +13,7 @@ app.get('/users', (req,res)=>{
     .then((data)=>{
         console.log(data);
         res.writeHead(200, {'Content-Type':'application/json'});
+        res.set('Cache-Control','private,max-age=86400')
         res.end(JSON.stringify(data.data));
     })
     .catch(error => {
