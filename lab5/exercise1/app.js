@@ -12,9 +12,9 @@ app.get('/users', (req,res)=>{
     axios.get('https://randomuser.me/api/?results=10')
     .then((data)=>{
         console.log(data);
-        res.writeHead(200, {'Content-Type':'application/json'});
+        // res.writeHead(200, {'Content-Type':'application/json'});
         res.set('Cache-Control','private,max-age=86400')
-        res.end(JSON.stringify(data.data));
+        res.json(data.data);
     })
     .catch(error => {
         res.end(error.message);
