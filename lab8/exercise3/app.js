@@ -26,6 +26,7 @@ app.use('/api/locations', locationRoutes);
 
 client.connect(function(error){
     app.locals.db = client.db('lab8');
+    app.locals.db.collection('locations').createIndex({location: '2d'});
     const port = 3600;
     app.listen(port, () => console.log(`Listening on ${port} port.`));
 })
