@@ -19,3 +19,12 @@ NoSQl Model design for above requirments
 }
 
 ```
+
+
+Lab8 Exercise
+
+Revisit Homework07 and write down your suggestiong to tune your Library application performance. (Indexes).
+
+I will create indexes on the following fields
+ - borrowed
+ - returned_date
