@@ -4,9 +4,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-counter',
   template: `
     <p>
-      counter works!
+      Counter Component!
     </p>
-    <button (click)="decrement()">-</button>{{ counterValue }}<button (click)="increment()">+</button>
+    <button (click)="decrement()">-</button>
+        {{ counterValue }}
+    <button (click)="increment()">+</button>
 
     <h3>Counter Input: {{ counter }} </h3>
   `,
