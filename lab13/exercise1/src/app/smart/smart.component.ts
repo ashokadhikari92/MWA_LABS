@@ -7,7 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SmartComponent implements OnInit {
 
-  @Input('data') valueArray: string[];
+  // valueArray: string[];
+  valueArray = ["Ujjwol", "Jhonson", "Amir", "Ashok"];
 
   constructor() { }
 

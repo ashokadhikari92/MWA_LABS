@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'exercise1';
-  arrayData = ["Ujjwol", "Jhonson", "Amir", "Ashok"];
 }

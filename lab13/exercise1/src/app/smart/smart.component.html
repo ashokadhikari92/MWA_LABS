@@ -1,1 +1,4 @@
-<app-dump [data]="valueArray"></app-dump>
+<ul>
+    <app-dump *ngFor="let value of valueArray" [data]="value"></app-dump>
+</ul>
+  

@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DumpComponent implements OnInit {
 
-  @Input() data: string[];
+  @Input() data;
 
   constructor() { }
 
