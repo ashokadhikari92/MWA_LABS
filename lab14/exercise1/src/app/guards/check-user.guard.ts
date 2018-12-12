@@ -11,9 +11,6 @@ export class CheckUserGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      console.log(route);
-      console.log(state);
-
       let user = JSON.parse(this.users.getCachedData()).results.find((user) => user.login.uuid == route.params.id);
       if(user){
         return true;
