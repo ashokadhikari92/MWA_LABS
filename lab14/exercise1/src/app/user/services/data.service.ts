@@ -1,22 +1,24 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class DataService {
-
   private userData;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {}
 
-   }
-
-  getOnlineData(){
-    return this.http.get('https://randomuser.me/api/?results=10');
+  getOnlineData() {
+    return this.http.get("https://randomuser.me/api/?results=10");
   }
 
-  getCachedData(){
-    return localStorage.data;
+  getCachedData(): any[] {
+    return JSON.parse(localStorage.data).results;
+  }
+
+  isExist(uuid):boolean{
+    let user = this.getCachedData().find((user) => user.login.uuid == uuid);
+    return user?true:false;
   }
 }
