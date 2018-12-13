@@ -1,9 +1,8 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-
+import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { UserModule } from "./user/user.module";
 import { RootComponent } from "./root/root.component";
 import { ErrorComponent } from "./error/error.component";
 import { NotFoundComponent } from "./error/not-found.component";
@@ -15,7 +14,7 @@ import { NotFoundComponent } from "./error/not-found.component";
     ErrorComponent,
     NotFoundComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, UserModule],
+  imports: [BrowserModule, AppRoutingModule,HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from "./app.component";
 import { UserComponent } from "./user/user.component";
 import { RootComponent } from "./root/root.component";
@@ -10,18 +10,13 @@ import { NotFoundComponent } from "./error/not-found.component";
 
 const routes: Routes = [
   { path: "", component: RootComponent },
-  { path: "users", component: UserComponent },
-  {
-    path: "users/detail/:id",
-    component: UserDetailComponent,
-    canActivate: [CheckUserGuard]
-  },
+  { path: "users", loadChildren: './user/user.module#UserModule' },
   { path: "error", component: ErrorComponent },
   { path: "**", component: NotFoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
