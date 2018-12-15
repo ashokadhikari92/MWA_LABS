@@ -1,0 +1,6 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<input type="text" (input)="filter($event)" #search>
+<div *ngFor="let post of posts | mypipe:search.value">
+  <mypost [data]="post"></mypost>
+</div>
+

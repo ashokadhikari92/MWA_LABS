@@ -1,9 +1,7 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from "./app.component";
-import { UserComponent } from "./user/user.component";
 import { RootComponent } from "./root/root.component";
-import { UserDetailComponent } from "./user/detail/detail.component";
 import { CheckUserGuard } from "./guards/check-user.guard";
 import { ErrorComponent } from "./error/error.component";
 import { NotFoundComponent } from "./error/not-found.component";
