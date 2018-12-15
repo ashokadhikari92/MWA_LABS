@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var gradesRouter = require('./routes/users');
 const cors = require('cors');
+const mongoose = require("mongoose");
 
 var app = express();
 
@@ -16,9 +17,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req,res,next){
+mongoose.connect("mongodb+srv://ashok:NlVCR04HgA0bgLFQ@cluster0-6hxkz.mongodb.net/lab15?retryWrites=true")
+.then(() => {
+    console.log("Connected to database");
+})
+.catch(() => {
+    console.log("Connection failed.");
+})
 
-});
 
 app.use('/api/users', gradesRouter);
 
