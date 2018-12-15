@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
       accept: [0]
     });
 
-    this.signupForm.valueChanges.subscribe(value => console.log(value));
+    // this.signupForm.valueChanges.subscribe(value => console.log(value));
   }
 
   ngOnInit() {}
